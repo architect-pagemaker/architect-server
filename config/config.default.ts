@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
 export default (appInfo: EggAppInfo) => {
@@ -13,6 +14,19 @@ export default (appInfo: EggAppInfo) => {
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
+    __PUBLIC: path.resolve(__dirname, '../app/public/'),
+  };
+
+  // egg-security config
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+
+  // logger
+  config.logger = {
+    disableConsoleAfterReady: false,
   };
 
   // the return config will combines to EggAppConfig
