@@ -14,6 +14,10 @@ import 'egg-schedule';
 import 'egg-static';
 import 'egg-jsonp';
 import 'egg-view';
+import 'egg-console';
+import 'egg-validate';
+import 'egg-redis';
+import 'egg-sequelize';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -29,5 +33,9 @@ declare module 'egg' {
     static?: EggPluginItem;
     jsonp?: EggPluginItem;
     view?: EggPluginItem;
+    console?: EggPluginItem;
+    validate?: EggPluginItem;
+    redis?: EggPluginItem;
+    sequelize?: EggPluginItem;
   }
 }

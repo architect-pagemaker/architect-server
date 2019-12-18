@@ -1,6 +1,7 @@
 {
   "extends": ["tslint-config-egg"],
   "rules": {
-    "semicolon": [true, "never"]
+    "semicolon": [true, "never"],
+    "trailing-comma": [false]
   }
 }

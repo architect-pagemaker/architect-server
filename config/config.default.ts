@@ -17,6 +17,33 @@ export default (appInfo: EggAppInfo) => {
     __PUBLIC: path.resolve(__dirname, '../app/public/'),
   }
 
+  // mysql configuration
+  config.sequelize = {
+    dialect: 'mysql',
+    host: 'mysql-event-master.event',
+    port: 3306,
+    database: 'eventdb',
+    username: process.env.mysql_event_username,
+    password: process.env.mysql_event_password,
+    timezone: '+08:00',
+    datasources: [
+      {
+        delegate: 'baseModel',
+        baseDir: 'base_model',
+        dialect: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: 'root',
+        database: 'architect',
+        timezone: '+08:00',
+        define: {
+          timestamps: false
+        }
+      }
+    ],
+  }
+
   // egg-security config
   config.security = {
     csrf: {
@@ -28,6 +55,8 @@ export default (appInfo: EggAppInfo) => {
   config.logger = {
     disableConsoleAfterReady: false,
   }
+
+  // egg-console
 
   // the return config will combines to EggAppConfig
   return {
