@@ -19,26 +19,21 @@ export default (appInfo: EggAppInfo) => {
 
   // mysql configuration
   config.sequelize = {
-    dialect: 'mysql',
-    host: 'mysql-event-master.event',
-    port: 3306,
-    database: 'eventdb',
-    username: process.env.mysql_event_username,
-    password: process.env.mysql_event_password,
-    timezone: '+08:00',
     datasources: [
       {
-        delegate: 'baseModel',
-        baseDir: 'base_model',
+        delegate: 'model',
+        baseDir: 'model',
         dialect: 'mysql',
         host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: 'root',
+        port: process.env.MYSQL_PORT ? +process.env.MYSQL_PORT : 3306,
+        username: process.env.MYSQL_USERNAME,
+        password: process.env.MYSQL_PASSWORD,
         database: 'architect',
         timezone: '+08:00',
         define: {
-          timestamps: false
+          freezeTableName: true,
+          timestamps: false,
+          underscored: true
         }
       }
     ],
